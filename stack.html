@@ -15,16 +15,17 @@
     <button id="stack" onclick="stack()">Push value</button>
     <button id="popitem" onclick="popItem()">Pop</button>
     <button id="zap" onclick="zap()">Zap value</button>
+    <button id="uniqueHandler" onclick="uniqueHandler()">Unique</button>
     <br><br>
     <div class="flex-container" id="target">
         <div class="stack">row item1</div>
         <div class="stack">row item2</div>
         <div class="stack">row item3</div>
     </div>
+
 </body>
 <script>
-
-    function stack() {
+ function stack() {
         let element = document.createElement("div")
         value = document.getElementById("form_input").value
         element.innerHTML = value
@@ -58,6 +59,23 @@
             }
         }
         console.log("We are getting rid of all elements with " + input + "'")
+        
+    }
+    function uniqueHandler() {
+        let stackItems = document.getElementsByClassName('stack');
+        length = stackItems.length;
+        for (let index = 0; index < length; index++) {
+            let element = stackItems[index].innerHTML;
+            for (let insideIndex = index + 1; insideIndex < length; insideIndex++) {
+                let elementInside = stackItems[insideIndex].innerHTML;
+                if (element == elementInside) {
+                    stackItems[insideIndex].remove();
+                    console.log("removed_element", stackItems)
+                    insideIndex--;
+                    index--;
+                }
+            }
+        }
     }
 </script>
 </html>
